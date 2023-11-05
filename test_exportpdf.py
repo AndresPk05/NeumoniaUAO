@@ -1,5 +1,5 @@
 import unittest
-import ExportPDF	
+from PDF import PDF
 from tkinter import *
 from tkinter import ttk, font, filedialog
 
@@ -10,7 +10,7 @@ class TestExportPDF(unittest.TestCase):
 
 
     def test_create_pdf(self):
-        self.assertEqual(ExportPDF.create_pdf(self), "El PDF fue generado con éxito.")
+        self.assertEqual(PDF.create_pdf(self), "El PDF fue generado con éxito.")
 
 
 if __name__ == "__main__":

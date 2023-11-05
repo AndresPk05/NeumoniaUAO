@@ -6,9 +6,9 @@ from tkinter import ttk, font, filedialog
 from tkinter.messagebox import askokcancel, showinfo, WARNING
 from PIL import ImageTk, Image
 import csv
-import ExportPDF
-import ReadImages
-import Modelo
+from PDF import PDF
+from Image import ImageFile
+import PredictNeomony
 
 class App:
     def __init__(self):
@@ -105,14 +105,14 @@ class App:
             ),
         )
         if filepath:
-            self.array, img2show = ReadImages.read_dicom_file(filepath)
+            self.array, img2show = ImageFile().read_dicom_file(filepath)
             self.img1 = img2show.resize((250, 250), Image.LANCZOS)
             self.img1 = ImageTk.PhotoImage(self.img1)
             self.text_img1.image_create(END, image=self.img1)
             self.button1["state"] = "enabled"
 
     def run_model(self):
-        self.label, self.proba, self.heatmap = Modelo.predict(self.array)
+        self.label, self.proba, self.heatmap = PredictNeomony.predict(self.array)
         self.img2 = Image.fromarray(self.heatmap)
         self.img2 = self.img2.resize((250, 250), Image.LANCZOS)
         self.img2 = ImageTk.PhotoImage(self.img2)
@@ -130,7 +130,7 @@ class App:
             showinfo(title="Guardar", message="Los datos se guardaron con éxito.")
 
     def create_pdf(self):
-        result = ExportPDF.create_pdf(self)
+        result = PDF().create_pdf(self)
         showinfo(title="PDF", message=result)
 
     def delete(self):
