@@ -7,9 +7,11 @@ import cv2
 
 
 class Model:
+    # Método para cargar el modelo preentrenado
     def model_fun(self):
         return tf.keras.models.load_model('WilhemNet_86.h5')
 
+    # Método para aplicar Grad-CAM en una imagen
     def grad_cam(self, array):
         img = self.preprocess(array)
         model = self.model_fun()
@@ -30,6 +32,7 @@ class Model:
         heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[2]))
         heatmap = np.uint8(255 * heatmap)
         heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
+        # Superpone el mapa de calor a la imagen original
         img2 = cv2.resize(array, (512, 512))
         hif = 0.8
         transparency = heatmap * hif
@@ -38,7 +41,7 @@ class Model:
         superimposed_img = superimposed_img.astype(np.uint8)
         return superimposed_img[:, :, ::-1]
 
-
+    # Método para preprocesar la imagen
     def preprocess(self, array):
         array = cv2.resize(array, (512, 512))
         array = cv2.cvtColor(array, cv2.COLOR_BGR2GRAY)
@@ -46,6 +49,7 @@ class Model:
         array = clahe.apply(array)
         array = array / 255
         array = np.expand_dims(array, axis=-1)
+        # Agrega una dimensión extra para indicar el número de imágenes
         array = np.expand_dims(array, axis=0)
         return array
 

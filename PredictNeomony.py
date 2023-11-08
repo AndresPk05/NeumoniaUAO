@@ -1,6 +1,7 @@
 from Model import Model
 import numpy as np
 
+# Metodo para precedir la neomonia en la radiografia
 def predict(array):
     model_class = Model()
     #   1. call function to pre-process image: it returns image in batch format
@@ -19,4 +20,5 @@ def predict(array):
         label = "viral"
         #   3. call function to generate Grad-CAM: it returns an image with a superimposed heatmap
     heatmap = model_class.grad_cam(array)
+    # Devuelve la etiqueta de la clase, la probabilidad y el mapa de calor
     return (label, proba, heatmap)

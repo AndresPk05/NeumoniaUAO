@@ -10,6 +10,7 @@ from PDF import PDF
 from Image import ImageFile
 import PredictNeomony
 
+#Clase de vista que contiene la capa de la UI
 class App:
     def __init__(self):
         self.root = Tk()
