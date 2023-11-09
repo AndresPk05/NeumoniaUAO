@@ -112,6 +112,7 @@ class App:
             self.text_img1.image_create(END, image=self.img1)
             self.button1["state"] = "enabled"
 
+    #Evento que se ejecuta al presionar el boton predecir
     def run_model(self):
         self.label, self.proba, self.heatmap = PredictNeomony.predict(self.array)
         self.img2 = Image.fromarray(self.heatmap)
@@ -122,6 +123,7 @@ class App:
         self.text2.insert(END, self.label)
         self.text3.insert(END, "{:.2f}".format(self.proba) + "%")
 
+    #Evento que se ejecuta al presionar el boton guardar
     def save_results_csv(self):
         with open("historial.csv", "a") as csvfile:
             w = csv.writer(csvfile, delimiter="-")
@@ -130,10 +132,12 @@ class App:
             )
             showinfo(title="Guardar", message="Los datos se guardaron con éxito.")
 
+    #Evento que se ejecuta al presionar el boton PDF
     def create_pdf(self):
         result = PDF().create_pdf(self)
         showinfo(title="PDF", message=result)
 
+    #Evento que se ejecuta al presionar el boton Borrar
     def delete(self):
         answer = askokcancel(
             title="Confirmación", message="Se borrarán todos los datos.", icon=WARNING
