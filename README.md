@@ -1,3 +1,9 @@
+## Recomendacion para ejecutar la aplicacion en el container de Docker cuando el Host es Windows
+1. Se debe instalar el aplicativo vcxsrv, que permite levantar un servidor para simular la pantalla del docker para que asi se renderice la vista.
+2. En el archivo compose.yaml cuando se pasa el envoirement se debe cambiar la ip por la del equipo host para que el display del front se ejecute el servidor X.
+3. Antes de correr el docker se debe levantar el ServerX con el Xlaunch que se crea en el escritorio, tener en cuenta que en el paso 3 de configuracion del server X habilitar la opcion que permite que acepte la conexion de todos los clientes de lo contrario no conectara.
+
+
 ## Hola! Bienvenido a la herramienta para la detección rápida de neumonía
 
 Deep Learning aplicado en el procesamiento de imágenes radiográficas de tórax en formato DICOM con el fin de clasificarlas en 3 categorías diferentes:

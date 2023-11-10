@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 from tkinter import *
 from tkinter import ttk, font, filedialog
 from tkinter.messagebox import askokcancel, showinfo, WARNING
@@ -9,6 +8,7 @@ import csv
 from PDF import PDF
 from Image import ImageFile
 import PredictNeomony
+
 
 #Clase de vista que contiene la capa de la UI
 class App:
