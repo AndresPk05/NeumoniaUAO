@@ -16,13 +16,11 @@ class App:
         self.root = Tk()
         self.root.title("Herramienta para la detección rápida de neumonía")
 
-        #   BOLD FONT
         fonti = font.Font(weight="bold")
 
         self.root.geometry("815x560")
         self.root.resizable(0, 0)
 
-        #   LABELS
         self.lab1 = ttk.Label(self.root, text="Imagen Radiográfica", font=fonti)
         self.lab2 = ttk.Label(self.root, text="Imagen con Heatmap", font=fonti)
         self.lab3 = ttk.Label(self.root, text="Resultado:", font=fonti)
@@ -34,23 +32,18 @@ class App:
         )
         self.lab6 = ttk.Label(self.root, text="Probabilidad:", font=fonti)
 
-        #   TWO STRING VARIABLES TO CONTAIN ID AND RESULT
         self.ID = StringVar()
         self.result = StringVar()
 
-        #   TWO INPUT BOXES
         self.text1 = ttk.Entry(self.root, textvariable=self.ID, width=10)
 
-        #   GET ID
         self.ID_content = self.text1.get()
 
-        #   TWO IMAGE INPUT BOXES
         self.text_img1 = Text(self.root, width=31, height=15)
         self.text_img2 = Text(self.root, width=31, height=15)
         self.text2 = Text(self.root)
         self.text3 = Text(self.root)
 
-        #   BUTTONS
         self.button1 = ttk.Button(
             self.root, text="Predecir", state="disabled", command=self.run_model
         )
@@ -63,7 +56,6 @@ class App:
             self.root, text="Guardar", command=self.save_results_csv
         )
 
-        #   WIDGETS POSITIONS
         self.lab1.place(x=110, y=65)
         self.lab2.place(x=545, y=65)
         self.lab3.place(x=500, y=350)
@@ -81,19 +73,14 @@ class App:
         self.text_img1.place(x=65, y=90)
         self.text_img2.place(x=500, y=90)
 
-        #   FOCUS ON PATIENT ID
         self.text1.focus_set()
-
-        #  se reconoce como un elemento de la clase
         self.array = None
 
         #   NUMERO DE IDENTIFICACIÓN PARA GENERAR PDF
         self.reportID = 0
-
-        #   RUN LOOP
         self.root.mainloop()
 
-    #   METHODS
+    # Evento que se ejecuta al presionar el boton cargar imagen
     def load_img_file(self):
         filepath = filedialog.askopenfilename(
             initialdir="/",
